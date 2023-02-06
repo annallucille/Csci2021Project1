@@ -2,7 +2,9 @@ Commits by branch
 
 main: 
     Commit 1: 'makefile and file creation'
-               Pushing Makefile tree.c, heap.c, code.c, main.c
+               Pushing files copied from the canvas link
+    Commit 2: 'README update'
+               Added info to read me 
 
 breck061: 
     Commit 1: 
