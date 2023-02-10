@@ -15,10 +15,38 @@ int heapSize;
 
 /******** INSERT YOUR CODE HERE IF NEEDED ********/
 
-
-
 void bubbleUp(int pos);
 void bubbleDown(int pos);
+
+void bubbleUp(int pos) {
+    if (pos <= heapSize && pos/2 > 0) {
+        if (heap[pos].freq < heap[pos/2].freq) {
+            HeapNode temp = heap[pos];
+            heap[pos] = heap[pos/2];
+            heap[pos/2] = temp;
+            bubbleUp(pos/2);
+        }
+    }
+}
+
+void bubbleDown(int pos) {
+    if (pos > 0 && pos <= heapSize) {
+        int min = pos;
+        if (2*pos <= heapSize && heap[2*pos].freq < heap[min].freq) {
+            min = 2 * pos;
+        }
+        if (2*pos+1 <= heapSize && heap[2*pos+1].freq < heap[min].freq) {
+            min = 2 * pos + 1;
+        }
+
+        if (min != pos) {
+            HeapNode temp = heap[pos];
+            heap[pos] = heap[min];
+            heap[min] = temp;
+            bubbleDown(min);
+        }
+    }
+}
 
  
 /*Initialize Heap*/
@@ -36,9 +64,11 @@ void heapInit() {
  * 3. Sift up the new element (swim/bubble up operation) until the heap property has been reestablished.
  */
 void HeapInsert(char c, huffman_tree_node *t, int freq) {
-
-    /******** INSERT YOUR CODE HERE ********/
-
+    heapSize++;
+    heap[heapSize].c = c;
+    heap[heapSize].t_node = t;
+    heap[heapSize].freq = freq;
+    bubbleUp(heapSize);
 }
  
 /* 
@@ -51,9 +81,11 @@ void HeapInsert(char c, huffman_tree_node *t, int freq) {
  * Note that, heap[0] is NOT used in this heap implementation 
  */
 HeapNode DeleteMin() {
-
-    /******** INSERT YOUR CODE HERE ********/
-
+    HeapNode output = heap[1];
+    heap[1] = heap[heapSize];
+    heapSize--;
+    bubbleDown(1);
+    return output;
 }
  
 void heapPrint()  {

@@ -8,3 +8,7 @@ main:
 
 breck061: 
     Commit 1: 
+
+oberp007:
+    Commit 1: 'Added Heap Functionality'
+              Added HeapInsert, DeleteMin, bubbleDown, and bubbleUp
