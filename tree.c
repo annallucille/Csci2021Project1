@@ -9,7 +9,7 @@ huffman_tree_node *huffman_tree= NULL;
  *
  **********************************************************************************************/
 
-
+ 
 /* 
  * Create a single tree node initialized with the given parameters 
  */
@@ -20,7 +20,7 @@ huffman_tree_node* create_node(char c, huffman_tree_node* l, huffman_tree_node* 
     node->c = c;
     node->left = l;
     node->right = r;
- 
+  
     return node;
 }
  
@@ -34,9 +34,19 @@ huffman_tree_node* create_node(char c, huffman_tree_node* l, huffman_tree_node* 
  * 3. The last element in the heap contains the root of the huffman tree
  */
 
-void build_huffman_tree()
-{
-      /********* INSERT YOUR CODE HERE *************/ 
+void build_huffman_tree(){
+	huffman_tree_node* l;
+	huffman_tree_node* r;
+	for (int i=0;i<=heapSize;i++){
+		heap[i].t_node = create_node(heap[i].c,NULL,NULL);
+	}
+	while(heapSize>1){
+		l = DeleteMin().t_node;
+		r = DeleteMin().t_node;
+		huffman_tree_node* node = create_node(heap[heapSize].c, l, r); 
+		HeapInsert(heap[heapSize].c,node,heap[heapSize].freq);
+	}
+	huffman_tree = heap[1].t_node;
 }
  
 void print_huffman_tree(huffman_tree_node *root, int level)  {
@@ -68,7 +78,6 @@ void print_huffman_tree(huffman_tree_node *root, int level)  {
 }
 
 #ifdef TEST
-
 int main() {
     heapInit();
 
@@ -78,10 +87,10 @@ int main() {
     HeapInsert('f', NULL, 43);
     HeapInsert('u', NULL, 51);
     HeapInsert('y', NULL, 1);
+	
 
     build_huffman_tree();
     print_huffman_tree(huffman_tree, 0); 
     return 0;
 }
-
 #endif // TEST
