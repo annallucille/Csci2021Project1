@@ -9,7 +9,7 @@ huffman_tree_node *huffman_tree= NULL;
  *
  **********************************************************************************************/
 
-
+ 
 /* 
  * Create a single tree node initialized with the given parameters 
  */
@@ -20,7 +20,7 @@ huffman_tree_node* create_node(char c, huffman_tree_node* l, huffman_tree_node* 
     node->c = c;
     node->left = l;
     node->right = r;
- 
+  
     return node;
 }
  
@@ -34,9 +34,25 @@ huffman_tree_node* create_node(char c, huffman_tree_node* l, huffman_tree_node* 
  * 3. The last element in the heap contains the root of the huffman tree
  */
 
-void build_huffman_tree()
-{
-      /********* INSERT YOUR CODE HERE *************/ 
+void build_huffman_tree(){
+	huffman_tree_node* l;
+	huffman_tree_node* r;
+	for (int i=0;i<=heapSize;i++){
+		heap[i].t_node = create_node(heap[i].c,NULL,NULL);
+	}
+	while(heapSize>1){
+		l = DeleteMin().t_node;
+		r = DeleteMin().t_node;
+		huffman_tree_node* node = create_node(heap[1].c, l, r); 
+		int f = heap[1].freq;
+		DeleteMin();
+		HeapInsert(node->c,node,f);
+		heapPrint();
+	}
+	huffman_tree = create_node(heap[1].c,l,r);
+	printf("root is %c ", huffman_tree->c);
+	printf(" with %c", l->c);
+	printf(" and %c", r->c);
 }
  
 void print_huffman_tree(huffman_tree_node *root, int level)  {
@@ -52,8 +68,9 @@ void print_huffman_tree(huffman_tree_node *root, int level)  {
 	for(i = 0; i < level; i++)
 		printf("   ");
 
-	if(root->left != NULL || root->right != NULL) 
-		printf("Node (I)\n");
+	if(root->left != NULL || root->right != NULL){ 
+		printf("Node %d(%c)\n", root->c, root->c);
+	}
 	else if(isprint(root->c)) 
 		printf("Node %d(%c)\n", root->c, root->c);
 	else 
@@ -68,7 +85,6 @@ void print_huffman_tree(huffman_tree_node *root, int level)  {
 }
 
 #ifdef TEST
-
 int main() {
     heapInit();
 
@@ -77,11 +93,13 @@ int main() {
     HeapInsert('d', NULL, 99);
     HeapInsert('f', NULL, 43);
     HeapInsert('u', NULL, 51);
-    HeapInsert('y', NULL, 1);
+	HeapInsert('x', NULL, 31);
+    HeapInsert('z', NULL, 20);
+	heapPrint();
+	
 
     build_huffman_tree();
     print_huffman_tree(huffman_tree, 0); 
     return 0;
 }
-
 #endif // TEST

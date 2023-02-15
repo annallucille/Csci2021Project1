@@ -5,15 +5,6 @@ HeapNode heap[256];
 int heapSize;
 
 
-/**********************************************************************************************
- *
- * Declare and define any local function here to support your implementation of the heap 
- *
- **********************************************************************************************/
-
-
-
-/******** INSERT YOUR CODE HERE IF NEEDED ********/
 
 void bubbleUp(int pos);
 void bubbleDown(int pos);
@@ -112,7 +103,6 @@ void heapPrint()  {
 ****************************************************************/
 
 #ifdef TEST
-
 int main() {
     heapInit();
 
@@ -130,7 +120,7 @@ int main() {
 
     DeleteMin();
     heapPrint();
+    
     return 0;
 }
-
 #endif // TEST

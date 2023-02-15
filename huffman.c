@@ -67,7 +67,7 @@ int main(int argc, char **argv)   {
 	HeapInsert(0, NULL, 0);   
 
 	// Print the heap 
-        heapPrint();
+        heapPrint(); 
 
 	// build the buffman tree
         build_huffman_tree();
@@ -77,7 +77,7 @@ int main(int argc, char **argv)   {
 
 	// initialize and generate code based on the huffman tree
         init_code();
-        gen_code(huffman_tree, 0);
+        gen_code(huffman_tree, 1);
 
         print_code();
 

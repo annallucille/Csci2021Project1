@@ -7,7 +7,10 @@ main:
                Added info to read me 
 
 breck061: 
-    Commit 1: 
+    Commit 1: 'tree equation and code start'
+               Completed tree.c and started on code.c
+    Commit 2: 'code.c completetion'
+               Finished code.c
 
 oberp007:
     Commit 1: 'Added Heap Functionality'
