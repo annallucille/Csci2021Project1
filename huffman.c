@@ -77,7 +77,7 @@ int main(int argc, char **argv)   {
 
 	// initialize and generate code based on the huffman tree
         init_code();
-        gen_code(huffman_tree, 0);
+        gen_code(huffman_tree, 1);
 
         print_code();
 

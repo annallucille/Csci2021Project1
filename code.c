@@ -6,7 +6,8 @@
 
 char huffman_code[256][20];
 char code_buffer[20];
-int z;
+char one = 1;
+char zero = 0;
 
 /**********************************************************************************************
  *
@@ -42,19 +43,20 @@ void print_code()   {
  */
 
 void gen_code(huffman_tree_node *node, int pos){
-	if (node->left!=NULL){
-		for(int i =0; i<=strlen(huffman_code[pos]);i++){
-			huffman_code[pos+1][i] = huffman_code[pos][i];
-		}
-		huffman_code[pos+1][strlen(huffman_code[pos])+1] = '0';
-		gen_code(node->left, pos+1);
+	code_buffer[0]='0';
+	printf("%c\n",code_buffer[pos]);
+	huffman_code[(int)node->c][0] = code_buffer[0];
+	for(int i =0; i<pos;i++){
+		huffman_code[(int)node->c][i] = code_buffer[i];
+	}
+
+	if(node->left!=NULL){
+		code_buffer[pos] = '0';
+		gen_code(node->left,pos+1);
 	}
     if(node->right!=NULL){
-		for(int i =0; i<=strlen(huffman_code[pos]);i++){
-			huffman_code[pos+1][i] = huffman_code[pos][i];
-		}
-		huffman_code[pos+1][strlen(huffman_code[pos])+1]='1';
-		gen_code(node->right, pos+1);
+		code_buffer[pos] = '1';
+		gen_code(node->right,pos+1);
 	}
 }
 

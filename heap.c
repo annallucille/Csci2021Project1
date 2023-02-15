@@ -5,6 +5,7 @@ HeapNode heap[256];
 int heapSize;
 
 
+
 void bubbleUp(int pos);
 void bubbleDown(int pos);
 
@@ -119,15 +120,7 @@ int main() {
 
     DeleteMin();
     heapPrint();
-
-    DeleteMin();
-    heapPrint();
-
-    DeleteMin();
-    heapPrint();
-
-    DeleteMin();
-    heapPrint();
+    
     return 0;
 }
 #endif // TEST
