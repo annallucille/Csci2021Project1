@@ -35,28 +35,26 @@ huffman_tree_node* create_node(char c, huffman_tree_node* l, huffman_tree_node* 
  */
 
 void build_huffman_tree(){
-	huffman_tree_node* l;
-	huffman_tree_node* r;
+	HeapNode l;
+	HeapNode r;
 	for (int i=0;i<=heapSize;i++){
 		heap[i].t_node = create_node(heap[i].c,NULL,NULL);
 	}
 	while(heapSize>1){
-		l = DeleteMin().t_node;
-		r = DeleteMin().t_node;
-		huffman_tree_node* node = create_node(heap[1].c, l, r); 
-		int f = heap[1].freq;
-		DeleteMin();
-		HeapInsert(node->c,node,f);
-		heapPrint();
+		l = DeleteMin();
+		r = DeleteMin();
+		huffman_tree_node* node = create_node('\0', l.t_node, r.t_node); 
+		HeapInsert('\0',node,l.freq + r.freq);
 	}
-	huffman_tree = create_node(heap[1].c,l,r);
-	printf("root is %c ", huffman_tree->c);
-	printf(" with %c", l->c);
-	printf(" and %c", r->c);
+	huffman_tree = create_node(heap[1].c,l.t_node,r.t_node);
+	// printf("root is %c ", huffman_tree->c);
+	// printf(" with %c", l->c);
+	// printf(" and %c", r->c);
 }
  
-void print_huffman_tree(huffman_tree_node *root, int level)  {
+void print_huffman_tree(huffman_tree_node *root, int level, char dir)  {
 	int i; 
+	
 
 	if(level == 0)
 	   printf("\n----------------\n  TREE BEGIN\n-----------------\n");
@@ -66,7 +64,7 @@ void print_huffman_tree(huffman_tree_node *root, int level)  {
 		return;
 
 	for(i = 0; i < level; i++)
-		printf("   ");
+		printf("%c   ", dir);
 
 	if(root->left != NULL || root->right != NULL){ 
 		printf("Node %d(%c)\n", root->c, root->c);
@@ -77,8 +75,8 @@ void print_huffman_tree(huffman_tree_node *root, int level)  {
 		printf("Node %d(--)\n", root->c);
 
 
-	print_huffman_tree(root->left, level + 1);
-	print_huffman_tree(root->right, level + 1);
+	print_huffman_tree(root->left, level + 1, 'l');
+	print_huffman_tree(root->right, level + 1, 'r');
 
 	if(level == 0)
         	printf("\n-----------\n  TREE END\n------------\n");
@@ -99,7 +97,7 @@ int main() {
 	
 
     build_huffman_tree();
-    print_huffman_tree(huffman_tree, 0); 
+    print_huffman_tree(huffman_tree, 0, 't'); 
     return 0;
 }
 #endif // TEST

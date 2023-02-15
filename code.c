@@ -29,9 +29,9 @@ void print_code()   {
     for(int i = 0; i < 256; i++)  {
         if(huffman_code[i][0] != 0)  {
 			if(isprint(i))
-                        	printf("%d (%c): %s\n", i, i, huffman_code[i]);
+                printf("%d (%c): %s\n", i, i, huffman_code[i]);
 			else
-                        	printf("%d (--): %s\n", i, huffman_code[i]);
+                printf("%d (--): %s\n", i, huffman_code[i]);
 		}
     }
 	printf("\n----------------\n  CODES END\n-----------------\n");
@@ -43,9 +43,8 @@ void print_code()   {
  */
 
 void gen_code(huffman_tree_node *node, int pos){
-	code_buffer[0]='0';
-	printf("%c\n",code_buffer[pos]);
-	huffman_code[(int)node->c][0] = code_buffer[0];
+	code_buffer[0] = '0';
+	printf("%c\n",code_buffer[pos-1]);
 	for(int i =0; i<pos;i++){
 		huffman_code[(int)node->c][i] = code_buffer[i];
 	}
