@@ -15,4 +15,6 @@ breck061:
                fixed issues!!! 
 oberp007:
     Commit 1: 'Added Heap Functionality'
-              Added HeapInsert, DeleteMin, bubbleDown, and bubbleUp
+               Added HeapInsert, DeleteMin, bubbleDown, and bubbleUp
+    Commit 2: 'Added Test Script'
+	       Added test.sh and moved all test files to TESTFILES directory	

@@ -52,9 +52,8 @@ void build_huffman_tree(){
 	// printf(" and %c", r->c);
 }
  
-void print_huffman_tree(huffman_tree_node *root, int level, char dir)  {
+void print_huffman_tree(huffman_tree_node *root, int level)  {
 	int i; 
-	
 
 	if(level == 0)
 	   printf("\n----------------\n  TREE BEGIN\n-----------------\n");
@@ -64,25 +63,25 @@ void print_huffman_tree(huffman_tree_node *root, int level, char dir)  {
 		return;
 
 	for(i = 0; i < level; i++)
-		printf("%c   ", dir);
+		printf("   ");
 
-	if(root->left != NULL || root->right != NULL){ 
-		printf("Node %d(%c)\n", root->c, root->c);
-	}
+	if(root->left != NULL || root->right != NULL) 
+		printf("Node (I)\n");
 	else if(isprint(root->c)) 
 		printf("Node %d(%c)\n", root->c, root->c);
 	else 
 		printf("Node %d(--)\n", root->c);
 
 
-	print_huffman_tree(root->left, level + 1, 'l');
-	print_huffman_tree(root->right, level + 1, 'r');
+	print_huffman_tree(root->left, level + 1);
+	print_huffman_tree(root->right, level + 1);
 
 	if(level == 0)
         	printf("\n-----------\n  TREE END\n------------\n");
 }
 
 #ifdef TEST
+
 int main() {
     heapInit();
 
@@ -91,13 +90,12 @@ int main() {
     HeapInsert('d', NULL, 99);
     HeapInsert('f', NULL, 43);
     HeapInsert('u', NULL, 51);
-	HeapInsert('x', NULL, 31);
-    HeapInsert('z', NULL, 20);
-	heapPrint();
-	
+    HeapInsert('y', NULL, 1);
 
     build_huffman_tree();
-    print_huffman_tree(huffman_tree, 0, 't'); 
+    print_huffman_tree(huffman_tree, 0); 
     return 0;
 }
+
 #endif // TEST
+

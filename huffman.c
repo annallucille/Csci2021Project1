@@ -73,7 +73,7 @@ int main(int argc, char **argv)   {
         build_huffman_tree();
 
 	// Print the huffman tree 
-        print_huffman_tree(huffman_tree, 0,'n');
+        print_huffman_tree(huffman_tree, 0);
 
 	// initialize and generate code based on the huffman tree
         init_code();

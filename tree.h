@@ -18,6 +18,6 @@ extern huffman_tree_node *huffman_tree;
  
 // Building the huffman tree
 void build_huffman_tree();
-void print_huffman_tree(huffman_tree_node *root, int level, char dir);
+void print_huffman_tree(huffman_tree_node *root, int level);
 
 #endif // TREE_H

@@ -43,7 +43,7 @@ void print_code()   {
  */
 
 void gen_code(huffman_tree_node *node, int pos){
-	code_buffer[0] = '0';
+	//code_buffer[0] = '0';
 	for(int i =0; i<pos;i++){
 		huffman_code[(int)node->c][i] = code_buffer[i];
 	}
