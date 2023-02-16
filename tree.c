@@ -43,8 +43,8 @@ void build_huffman_tree(){
 	while(heapSize>1){
 		l = DeleteMin();
 		r = DeleteMin();
-		huffman_tree_node* node = create_node('\0', l.t_node, r.t_node); 
-		HeapInsert('\0',node,l.freq + r.freq);
+		huffman_tree_node* node = create_node((char)-1, l.t_node, r.t_node); 
+		HeapInsert((char)-1,node,l.freq + r.freq);
 	}
 	huffman_tree = create_node(heap[1].c,l.t_node,r.t_node);
 	// printf("root is %c ", huffman_tree->c);
